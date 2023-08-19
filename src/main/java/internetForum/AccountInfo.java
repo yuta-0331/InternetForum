@@ -27,7 +27,7 @@ public class AccountInfo extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		// sessionを持っていない場合、TOPページへリダイレクトする。
+		// login sessionを持っていない場合、TOPページへリダイレクトする。
         if (session == null || ((Integer) session.getAttribute("loginSession") == null)) {
             response.sendRedirect("top");
             return;
