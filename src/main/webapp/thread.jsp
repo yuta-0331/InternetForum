@@ -62,139 +62,23 @@
                    b.desc = "スレッド本文";
                    b.createDay = "12/1";
                }).build();
-               ArrayList<Response> responseList = new ArrayList<>(Arrays.asList(new Response.Builder(1).with(b -> {
+
+               Response sampleRes = new Response.Builder(1).with(b -> {
                    b.userName = "tanaka";
-                   b.description = "レスの本文";
+                   b.description = "レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文";
                    b.postedDate = "12/2";
                    b.userId = 13;
                    b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build(), new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-               }).build()));
+                   b.update = "update";
+                   b.report = true;
+               }).build();
+               ArrayList<Response> responseList = new ArrayList<>(Arrays.asList(sampleRes, sampleRes, sampleRes));
            %>
            <div class="thread_list_response_form_container">
                <div class="thread_container">
                    <div class="thread_outer">
                        <div class="threads_inner">
-                           <h1 class="thread_name"><%= "#" + thread.getThreadId() + "" + thread.getTitle() %></h1>
+                           <h1 class="thread_name"><%= "#" + thread.getThreadId() + ": " + thread.getTitle() %></h1>
                            <p class="thread_user_name"><a href="profile?id=<%= thread.getUserId() %>" rel="スレッド主のプロフィールページへ">by <%= thread.getUserName() %></a></p>
                            <p class="thread_desc"><%= thread.getDesc() %></p>
                            <p class="thread_create_day"><%= thread.getCreateDay() %></p>
@@ -215,15 +99,16 @@
                                    if (res.getUpdate() != null) {
                                        out.println("<span><small style='color: red'>(編集済)</small></span>");
                                    }
-                                   out.println("</p>");
+
+                                   out.println("<span class='res_posted_date'>" + res.getPostedDate() + "</span></p>");
                                    // ログイン中かつ自分以外の投稿に通報ボタンを表示する
                                    if (isLogin && loginSession != res.getUserId()) {
-                                       out.println("<div class='res_report_container'><a rel='通報ボタン' href='" + AbsolutePass.PASS + "response/report?id=" + res.getResponseId() + "'><span>"
+                                       out.println("<div class='res_report_container'><a rel='通報ボタン' href='" + AbsolutePass.PASS + "response/report?id=" + res.getResponseId() + "'><span class='res_report_button'>"
                                                + "通報"
                                                + "</span></a>");
                                        // リクエストスコープから通報フラグを取得してtrueならポップアップを表示する
                                        Boolean isReport = (Boolean) request.getAttribute("reportFlag" + res.getResponseId());
-                                       if (isReport != null && isReport) {
+                                       if (isReport != null && isReport ) {
                                            out.println("<form class='res_report_popup' method='post' action='" + AbsolutePass.PASS + "response/report?id=" + res.getResponseId() + "'>" 
                                            + "<p>通報しますか？</p>"
                                            + "<input type='submit' value='通報'>"
@@ -236,13 +121,13 @@
                                    }
                                    // 管理者なら削除ボタンを表示する
                                    if (isAdmin) {
-                                       out.println("<a rel='削除ボタン' href='" + AbsolutePass.PASS + "response/delete?id=" + res.getResponseId() + "'><span>"
+                                       out.println("<a rel='削除ボタン' href='" + AbsolutePass.PASS + "response/delete?id=" + res.getResponseId() + "'><span class='res_delete_button'>"
                                                + "削除"
                                                + "</span></a>");
                                    }
                                    // 作成者なら編集ボタンを表示する
                                    if (isLogin && ((Integer) session.getAttribute("loginSession")) == res.getUserId()) {
-                                       out.println("<a rel='編集ボタン' href='" + AbsolutePass.PASS + "response?id=" + res.getResponseId() + "'><span>"
+                                       out.println("<a rel='編集ボタン' href='" + AbsolutePass.PASS + "response?id=" + res.getResponseId() + "'><span class='res_edit_button'>"
                                                + "編集"
                                                + "</span></a>");
                                    }
@@ -259,7 +144,7 @@
                            String initValue = (String) request.getAttribute("initValue");
                            Integer responseId = (Integer) request.getAttribute("responseId");
 
-                           // ログイン中なら、response投稿フォームを表示する
+                           // ログイン中なら、response投稿フォームを表示す
                            if (isLogin) {
                                // 返信の編集中の場合、responseIdに値が渡るので、編集中と表示を出す
                                if (responseId != null) {

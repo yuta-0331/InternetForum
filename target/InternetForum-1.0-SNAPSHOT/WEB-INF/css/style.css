@@ -439,9 +439,6 @@ thread
 	width: 100vw;
 	display: grid;
 	grid-template-columns: 2fr 1fr;
-	/*justify-content: space-around;*/
-	/*align-items: center;*/
-	/*position: relative;*/
 	min-height: calc(100vh - 60px);
 }
 .thread_container {
@@ -453,10 +450,9 @@ thread
 .thread_outer {
 	border: double #8d8a8a; 
 	width: 80%;
-	height: fit;
-	padding: 10px 16px;
 	position: relative;
 	overflow: scroll;
+	border-radius: 6px;
 }
 .thread_outer::-webkit-scrollbar{
   display: none;
@@ -464,6 +460,8 @@ thread
 .thread_name {
 	color: red;
 	font-size: 20px;
+	margin-top: 20px;
+	margin-left: 20px;
 }
 .thread_user_name {
 	position: absolute;
@@ -474,19 +472,74 @@ thread
 }
 .thread_create_day {
 	position: absolute;
-	right: 0;
-	bottom: 0;
+	right: 2px;
+	bottom: 2px;
+	font-size: 12px;
 }
 .response_outer {
 	margin: 20px 0;
+	width: 80%;
 }
 .res_inner {
 	margin: 10px;
-	box-shadow: 0px 10px 10px -6px rgba(0, 0, 0, 0.3);
-	
+	box-shadow: 0 10px 10px -6px rgba(0, 0, 0, 0.3);
+	position: relative;
+	padding-bottom: 10px;
 }
+.res_name {
+	margin: 10px 10px;
+}
+.res_description {
+	margin: 12px 20px;
+	font-weight: lighter;
+}
+.res_posted_date {
+	position: absolute;
+	font-size: 12px;
+	right: 2px;
+	bottom: 2px;
+}
+.res_report_popup {
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	padding: 20px;
+	border-radius: 6px;
+	background-color: white;
+	box-shadow: 5px 5px 0 0 rgba(0, 0, 0, 0.4), 10px 10px 0 0 rgba(0, 0, 0, 0.3), 15px 15px 0 0 rgba(0, 0, 0, 0.2), 20px 20px 0 0 rgba(0, 0, 0, 0.1);
+	border: 1px solid;
+	animation: fadeIn .3s;
+}
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+		translate: 20px 20px;
+	}
+	100% {
+		translate: 0;
+		opacity: 1;
+	}
+}
+.res_report_popup input {
+	margin: 10px;
+	padding: 4px 8px;
+	border: none;
+	background-color: #57a2ec;
+	color: white;
+	border-radius: 6px;
+	cursor: pointer;
+	transition: color .3s, opacity .3s;
+}
+.res_report_popup input:hover {
+	opacity: 0.5;
+	color: black;
+}
+.res_report_popup a {
 
-
+}
+.res_edit_button, .res_delete_button, .res_report_button {
+	margin: 0 10px;
+}
 
 .response_form_inner {
 	height: calc(100vh - 60px);
