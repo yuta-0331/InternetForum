@@ -9,17 +9,17 @@ public class UserLogin {
     private int userId;
     private String userName;
     private Integer adminId;
+    private boolean deleteFlag;
     public boolean login(String email, String password) {
         try (
                 Connection connection = 
                         DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;database=InternetForum;"
                         + "encrypt=true;trustServerCertificate=true;"
                         + "integratedSecurity=false;user=sa;password=1234;");
-                
                 ){
             
-            String loginSql = "SELECT\n"
-                    + "    [user].user_id, user_name, hashed_password, admin_id "
+            String loginSql = "SELECT "
+                    + "    [user].user_id, user_name, hashed_password, admin_id, delete_flag "
                     + "FROM "
                     + "[user] "
                     + "LEFT JOIN admin"
@@ -37,6 +37,7 @@ public class UserLogin {
             userId = resultSet.getInt("user_id");
             userName = resultSet.getString("user_name");
             adminId = resultSet.getInt("admin_id");
+            deleteFlag = resultSet.getBoolean("delete_flag");
             String hashPassword = resultSet.getString("hashed_password");
             // 引数のパスワードをハッシュ化したものが、ハッシュパスワードと一致するかチェック
             // 一致したらtrueを返してログイン成功
@@ -60,5 +61,8 @@ public class UserLogin {
     }
     public Integer getAdminId() {
         return adminId;
+    }
+    public boolean isDeleteFlag() {
+        return deleteFlag;
     }
 }

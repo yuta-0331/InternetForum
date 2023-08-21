@@ -65,10 +65,10 @@
                    </dl>
                    <div class="account_edit_delete_container">
                        <p>
-                           <a href="/edit" rel="会員情報変更画面へ移動">会員情報変更</a>
+                           <a href=<%= "'account_info/edit?id=" + user.getUserId() + "'" %> rel="会員情報変更画面へ移動">会員情報変更</a>
                        </p>
                        <p>
-                           <a href="/delete" rel="会員情報削除画面へ移動">退会する</a>
+                           <a href=<%= "'account_info/delete?id=" + user.getUserId() + "'" %> rel="会員情報削除画面へ移動">退会する</a>
                        </p>
                    </div>
                </div>

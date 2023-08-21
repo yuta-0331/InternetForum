@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import internetForum.validation.CreateThreadValidation;
+import internetForum.validation.LoginValidation;
 
 /**
  * Servlet implementation class CreateThread
@@ -24,12 +25,13 @@ public class CreateThread extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		// sessionを持っていない場合、TOPページへリダイレクトする。
-		if (session != null && ((Integer) session.getAttribute("loginSession") != null)) {
+		// ログインセッションを持っている場合
+		if (new LoginValidation().valid(session)) {
 		    RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/createThread.jsp");
 		    dispatcher.forward(request, response);
 		    return;
 		}
+	    // sessionを持っていない場合、TOPページへリダイレクトする。
 		response.sendRedirect("top");
 	}
 

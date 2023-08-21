@@ -3,6 +3,7 @@ package internetForum;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import internetForum.validation.LoginValidation;
 import internetForum.validation.SignUpValidation;
 import model.UserLogin;
 import model.UserSignUp;
@@ -18,7 +19,7 @@ public class Login extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
-        if (session != null && session.getAttribute("loginSession") != null) {
+        if (new LoginValidation().valid(session)) {
             response.sendRedirect("top");
             return;
         }
@@ -43,6 +44,12 @@ public class Login extends HttpServlet {
                 request.setAttribute("errorMsg", "不正な値です");
                 System.out.print(request.getAttribute("csrfToken"));
                 System.out.println(request.getSession().getAttribute("csrfToken"));
+                RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/authForm.jsp");
+                dispatcher.forward(request, response);
+                return;
+            }
+            if (!userLogin.isDeleteFlag()) {
+                request.setAttribute("errorMsg", "このアカウントは削除されています。");
                 RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/authForm.jsp");
                 dispatcher.forward(request, response);
                 return;

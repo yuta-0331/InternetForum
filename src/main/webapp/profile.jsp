@@ -1,5 +1,5 @@
-<%@page import="internetForum.AbsolutePass"%>
-<%@page import="model.schema.Response"%>
+<%@page import="model.schema.Thread"%>
+<%@page import="model.schema.User"%>
 <%@page import="model.FetchGenreList"%>
 <%@page import="model.schema.Genre"%>
 <%@page import="java.util.ArrayList"%>
@@ -10,7 +10,7 @@
     <head>
         <meta charset="UTF-8">
         <meta name="description" content="会員制の掲示板サイトです">
-        <title>管理者ページ</title>
+        <title></title>
         <style><%@include file="/WEB-INF/css/style.css" %></style>
     </head>
     <body>
@@ -51,17 +51,35 @@
        </header>
        <main>
            <%
-               ArrayList<Response> responseList = (ArrayList<Response>) request.getAttribute("responseList");
-           for (Response res : responseList) {
-               out.println("<a rel='削除対象のレスの書かれたスレッドへ移動' href='" + AbsolutePass.PASS + "thread?id=" + res.getThreadId() + "'><p>" + res.getDescription() + "</p></a>"
-                       + "<form class='' method='post' action='" + AbsolutePass.PASS + "response/delete?id=" + res.getResponseId() + "'>" 
-                       + "<input type='submit' value='削除'>"
-                       + "<input type='text' name='csrfToken' value='" +(String) request.getSession(false).getAttribute("csrfToken") + "' hidden>"
-                       + "<input type='text' name='responseId' value='" + res.getResponseId() + "' hidden>"
-                       + "<input type='text' name='threadId' value='" + res.getThreadId() + "' hidden>"
-                       + "</form>");
-           }
+               // ユーザー情報と、ユーザーが建てたスレッドのリストを取得する
+               User user = (User) request.getAttribute("userInfo");
+               ArrayList<Thread> threadList = (ArrayList<Thread>) request.getAttribute("threadList");
            %>
+           <div class='profile_thread_container'>
+                <div class='profile_container'>
+                    <dl class="name_profile_container">
+                       <dt>ユーザー名:</dt>
+                       <dd class="account_name"><%= user.getUserName() %></dd>
+                       <dt>プロフィール:</dt>
+                       <dd class="account_profile">
+                           <%= user.getProfile() %>
+                       </dd>
+                   </dl>
+                </div>
+                <div class="account_thread_container">
+                   <div class="account_thread_heading_container">
+                       <h2 class="account_thread_heading">作成したスレッド</h2>
+                   </div>
+                       <ul>
+                           <%
+                               for (Thread th : threadList) {
+                                   out.println("<li><a href='thread?id=" + th.getThreadId() + "'>" + th.getTitle() + "<span>(" + th.getCreateDay() + ")</span>" + "</a></li>");
+                               }
+                           %>
+                       </ul>
+               </div>
+           </div>
+           
        </main>
        <footer>
            <div class="footer_container">

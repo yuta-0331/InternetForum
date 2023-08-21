@@ -21,13 +21,14 @@ public class FetchThreadListByGenre {
             String queryThreadList =
                     "SELECT "
                     + "    [user].user_id, user_name, create_day, title, description, thread.thread_id,"
-                    + "    update_day, thread.delete_flag, genre.genre_id, genre_name, thread.report, last_written_date\n"
-                    + "FROM thread \n"
-                    + "    INNER JOIN genre \n"
-                    + "        ON thread.genre_id = genre.genre_id \n"
-                    + "    INNER JOIN [user]\n"
-                    + "        ON [user].user_id = thread.user_id      \n"
-                    + "WHERE genre.genre_id = ?";
+                    + "    update_day, thread.delete_flag, genre.genre_id, genre_name, thread.report, last_written_date "
+                    + "FROM thread "
+                    + "    INNER JOIN genre "
+                    + "        ON thread.genre_id = genre.genre_id "
+                    + "    INNER JOIN [user] "
+                    + "        ON [user].user_id = thread.user_id "
+                    + "WHERE genre.genre_id = ?"
+                    + "    ORDER BY last_written_date DESC";
             PreparedStatement statement = connection.prepareStatement(queryThreadList);
             statement.setInt(1, genreId);
             ResultSet resultSet = statement.executeQuery();

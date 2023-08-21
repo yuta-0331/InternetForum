@@ -3,21 +3,21 @@
 reset
 */
 * {
-	margin: 0;
-	padding: 0;
-	box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     text-decoration: none;
     list-style: none;
     font-family: "MS PGothic", sans-serif;
 }
 html, body {
-	height: 100%;
+    height: 100%;
 }
 a {
-	color: #8d8a8a;
+    color: #8d8a8a;
 }
 .hidden {
-	display: none;
+    display: none;
 }
 main {
     min-height: 100vh;
@@ -29,547 +29,545 @@ main {
 header
 -------------------------*/
 header {
-	width: 100%;
-	height: 80px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: #f9f9f9;
-	font-size: 24px;
-	opacity: 0.5;
-	box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.35);
-	position: fixed;
-	top: 0;
-	color: black;
-	z-index: 100;
+    width: 100%;
+    height: 80px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f9f9f9;
+    font-size: 24px;
+    opacity: 0.5;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.35);
+    position: fixed;
+    top: 0;
+    color: black;
+    z-index: 100;
 }
 .header_outer {
-	width: 100%;
-	max-width: 1024px;
-	display: flex;
-	justify-content: space-between;
+    width: 100%;
+    max-width: 1024px;
+    display: flex;
+    justify-content: space-between;
 }
 .header_menu {
-	display: flex;
+    display: flex;
 }
 .header_menu_item {
-	margin: 0 30px;
-	color: black;
+    margin: 0 30px;
+    color: black;
 }
 .header_logo {
-	margin-left: 30px;
+    margin-left: 30px;
 }
 /*-----------------------
 footer
 -------------------------*/
 footer {
-	width: 100%;
+    width: 100%;
     height: 60px;
     display: flex;
     justify-content: center;
     align-items: center;
     background-color: #8d8a8a;
-	color: #f9f9f9;
+    color: #f9f9f9;
     position: sticky;
     bottom: 0;
 }
 .footer_inner {
-	display: flex;
+    display: flex;
 }
 .logout_button_wrapper {
-	position: absolute;
-	right: 0;
-	margin-right: 20px;
+    position: absolute;
+    right: 0;
+    margin-right: 20px;
 }
 .logout_button_wrapper a {
-	color: #f9f9f9;
+    color: #f9f9f9;
 }
 /*-----------------------
 canvas
 -------------------------*/
 .canvas_container {
-	padding-top: 100px;
-	display: flex;
-	justify-content: center;
+    padding-top: 100px;
+    display: flex;
+    justify-content: center;
 }
 .color_select {
-	display: flex;
-	justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 .color_select label {
-	margin: 0 12px;
+    margin: 0 12px;
 }
 .color_select {
-	color: white;
+    color: white;
 }
 .color_select li {
-	margin: 0 3px;
-	width: 60px;
-	height: 60px;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	cursor: pointer;
-	border-radius: 50%;
+    margin: 0 3px;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border-radius: 50%;
 }
 .color_select #black {
-	background-color: black;
+    background-color: black;
 }
 .color_select #blue {
-	background-color: blue;
+    background-color: blue;
 }
 .color_select #red {
-	background-color: red;
+    background-color: red;
 }
 .color_select #yellow {
-	background-color: yellow;
-	color: black;
+    background-color: yellow;
+    color: black;
 }
 .color_select #orange {
-	background-color: orange;
+    background-color: orange;
 }
 .color_select #pink {
-	background-color: pink;
+    background-color: pink;
 }
 .color_select #green {
-	background-color: green;
+    background-color: green;
 }
 .color_select #purple {
-	background-color: purple;
+    background-color: purple;
 }
 .font_weight_select {
-	display: flex;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .font_weight_select li {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background-color: gray;
-	border-radius: 50%;
-	cursor: pointer;
-	margin: 12px 12px;
-	color: white;
-	font-size: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: gray;
+    border-radius: 50%;
+    cursor: pointer;
+    margin: 12px 12px;
+    color: white;
+    font-size: 8px;
 }
 #thick {
-	width: 30px;
-	height: 30px;
+    width: 30px;
+    height: 30px;
 }
 #medium {
-	width: 25px;
-	height: 25px;
+    width: 25px;
+    height: 25px;
 }
 #thin {
-	width: 20px;
-	height: 20px;
+    width: 20px;
+    height: 20px;
 }
 /*-----------------------
 top page
 -------------------------*/
 .main_container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .info_genre_list_container {
-	width: 100vw;
-	max-width: 1024px;
-	display: flex;
-	flex-direction: row-reverse;
-	justify-content: space-around;
-	margin: 100px 0;
+    width: 100vw;
+    max-width: 1024px;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-around;
+    margin: 100px 0;
 }
 .info_genre_list_container h2 {
-	font-size: clamp(20px, 3vw, 30px);
-	min-height: 0;
-	font-weight: 400;
+    font-size: clamp(20px, 3vw, 30px);
+    min-height: 0;
+    font-weight: 400;
 }
 .info_container {
-	margin-right: 100px;
+    margin-right: 100px;
 }
 .genre_list_container {
-	margin-left: 100px;
+    margin-left: 100px;
 }
 .info_genre_list_container h2::after {
-	content: "";
-	display: block;
-	width: 160px;
-	min-height: 0;
-	height: 4px;
-	background-color: #8d8a8a;
-	margin: 20px 0 20px 0;
-	border-radius: 10px;
+    content: "";
+    display: block;
+    width: 160px;
+    min-height: 0;
+    height: 4px;
+    background-color: #8d8a8a;
+    margin: 20px 0 20px 0;
+    border-radius: 10px;
 }
 /*-----------------------
 auth form
 -------------------------*/
 .auth_form_container {
-	display: flex;;
-	justify-content: center;
-	align-items: center;
-	height: calc(100vh - 60px);
+    display: flex;;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px);
 }
 .form_login {
-	box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.35);
-	border-radius: 10px;
-	width: 300px;
-	height: 300px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	position: relative;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    width: 300px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 .radio_container {
-	position: absolute;
-	top: 30px;
+    position: absolute;
+    top: 30px;
 }
 .auth_form_inner {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .auth_form_inner div {
-	display: flex;
-	flex-direction: column;
-	margin: 0 5px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 5px;
 }
 .auth_form_inner input {
-	height: 30px;
-	width: 200px;
-	font-size: 24px;
+    height: 30px;
+    width: 200px;
+    font-size: 24px;
 }
 .auth_form_submit {
-	position: absolute;
-	bottom: 15px;
+    position: absolute;
+    bottom: 15px;
 }
 .auth_form_submit input {
-	display: block;
-	width: 60px;
-	height: 30px;
-	border-radius: 5px;
-	border: none;
-	background-color: #57a2ec;
-	color: #f9f9f9;
-	cursor: pointer;
-	font-size: 20px;
-	transition: opacity .3s, color .3s;
+    display: block;
+    width: 60px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: #57a2ec;
+    color: #f9f9f9;
+    cursor: pointer;
+    font-size: 20px;
+    transition: opacity .3s, color .3s;
 }
 .auth_form_submit input:hover {
-	opacity: 0.5;
-	color: black;
+    opacity: 0.5;
+    color: black;
 }
 .form_login .hidden {
-	display: none;
+    display: none;
 }
 /*-----------------------
 thread form
 -------------------------*/
 .thread_form_container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px);
 }
 .form_thread {
-	box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.35);
-	border-radius: 10px;
-	width: 500px;
-	height: 400px;
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	position: relative;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.35);
+    border-radius: 10px;
+    width: 500px;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
 }
 .form_inner {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 .form_inner div {
-	display: flex;
-	flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 .genre_select {
-	position: absolute;
-	top: 30px;
-	left: 76px;
+    position: absolute;
+    top: 30px;
+    left: 76px;
 }
 #threadTitle {
-	width: 350px;
+    width: 350px;
 }
 .form_inner textarea {
-	height: 180px;
-	width: 350px;
+    height: 180px;
+    width: 350px;
 }
 .thread_form_submit {
-	position: absolute;
-	bottom: 15px;
-	right: 76px;
+    position: absolute;
+    bottom: 15px;
+    right: 76px;
 }
 .thread_form_submit input {
-	display: block;
-	width: 60px;
-	height: 30px;
-	border-radius: 5px;
-	border: none;
-	background-color: #57a2ec;
-	color: #f9f9f9;
-	cursor: pointer;
-	font-size: 20px;
-	justify-self: flex-end;
-	transition: color .3s, opacity .3s;
+    display: block;
+    width: 60px;
+    height: 30px;
+    border-radius: 5px;
+    border: none;
+    background-color: #57a2ec;
+    color: #f9f9f9;
+    cursor: pointer;
+    font-size: 20px;
+    justify-self: flex-end;
+    transition: color .3s, opacity .3s;
 }
 .thread_form_submit input:hover {
-	opacity: 0.5;
-	color: black;
+    opacity: 0.5;
+    color: black;
 }
 /*-----------------------
 account info
 -------------------------*/
 .account_info_container {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-	align-items: center;
-	min-height: calc(100vh - 60px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 60px);
 }
 .account_info_inner {
-	border: 1px solid #8d8a8a;
-	width: 600px;
-	height: auto;
-	padding: 10px 20px;
-	border-radius: 6px;
+    border: 1px solid #8d8a8a;
+    width: 600px;
+    height: auto;
+    padding: 10px 20px;
+    border-radius: 6px;
 }
 .account_info_heading {
-	font-size: 20px;
-	font-weight: bold;
+    font-size: 20px;
+    font-weight: bold;
 }
 .account_name, .account_profile {
-	margin-left: 80px;
+    margin-left: 80px;
 }
 .account_edit_delete_container {
-	display: flex;
-	align-items: center;
-	justify-content: flex-end;
-	margin: 12px 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    margin: 12px 0;
 
 }
 .account_edit_delete_container a {
-	background-color: #57a2ec;
-	color: #f9f9f9;
-	display: block;
-	padding: 3px 12px;
-	border-radius: 6px;
-	margin: 0 10px;
-	transition: color .3s, opacity .3s;
+    background-color: #57a2ec;
+    color: #f9f9f9;
+    display: block;
+    padding: 3px 12px;
+    border-radius: 6px;
+    margin: 0 10px;
+    transition: color .3s, opacity .3s;
 }
 .account_edit_delete_container a:hover {
-	opacity: 0.5;
-	color: black;
+    opacity: 0.5;
+    color: black;
 }
 .account_thread_container {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	width: 100vw;
-	max-width: 600px;
-	margin-top: 100px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    max-width: 600px;
+    margin-top: 100px;
 }
 .account_thread_heading_container {
-	display: flex;
-	justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 .account_thread_container li {
-	display: flex;
-	justify-content: space-between;
-	padding: 2px 4px;
-	position: relative;
+    display: flex;
+    justify-content: space-between;
+    padding: 2px 4px;
+    position: relative;
 }
 .account_thread_container li:nth-child(even) {
-	background-color: #8d8a8a;
-	opacity: 0.9;
+    background-color: #8d8a8a;
+    opacity: 0.9;
 }
 .account_thread_container li:nth-child(even) a {
-	color: #f9f9f9;
+    color: #f9f9f9;
 }
 .account_thread_container li span {
-	position: absolute;
-	right: 4px;
+    position: absolute;
+    right: 4px;
 }
 .account-create_thread_container {
-	display: flex;
-	justify-content: center;
+    display: flex;
+    justify-content: center;
 }
 .account-create_thread_container span {
-	background-color: #57a2ec;
-	color: #f9f9f9;
-	display: block;
-	padding: 3px 12px;
-	border-radius: 6px;
-	transition: color.3s, opacity .3s;
-	position: absolute;
-	right: 12px;
-	top: 0;
+    background-color: #57a2ec;
+    color: #f9f9f9;
+    display: block;
+    padding: 3px 12px;
+    border-radius: 6px;
+    transition: color.3s, opacity .3s;
+    position: absolute;
+    right: 12px;
+    top: 0;
 }
 .account-create_thread_container span:hover {
-	opacity: 0.5;
-	color: black;
+    opacity: 0.5;
+    color: black;
 }
 /*-----------------------
 not found
 -------------------------*/
 .not_found_container {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px);
 }
 /*-----------------------
 thread
 -------------------------*/
 .thread_list_response_form_container {
-	max-width: 1024px;
-	width: 100vw;
-	display: grid;
-	grid-template-columns: 2fr 1fr;
-	min-height: calc(100vh - 60px);
+    max-width: 1024px;
+    width: 100vw;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    min-height: calc(100vh - 60px);
 }
 .thread_container {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	margin-top: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30vh;
 }
 .thread_outer {
-	border: double #8d8a8a; 
-	width: 80%;
-	position: relative;
-	overflow: scroll;
-	border-radius: 6px;
+    border: double #8d8a8a; 
+    width: 80%;
+    position: relative;
+    overflow: scroll;
+    border-radius: 6px;
 }
 .thread_outer::-webkit-scrollbar{
   display: none;
 }
 .thread_name {
-	color: red;
-	font-size: 20px;
-	margin-top: 20px;
-	margin-left: 20px;
+    color: red;
+    font-size: 20px;
+    margin-top: 20px;
+    margin-left: 20px;
 }
 .thread_user_name {
-	position: absolute;
-	right: 20px;
+    position: absolute;
+    right: 20px;
 }
 .thread_desc {
-	margin: 20px 40px;
+    margin: 20px 40px;
 }
 .thread_create_day {
-	position: absolute;
-	right: 2px;
-	bottom: 2px;
-	font-size: 12px;
+    position: absolute;
+    right: 2px;
+    bottom: 2px;
+    font-size: 12px;
 }
 .response_outer {
-	margin: 20px 0;
-	width: 80%;
+    margin: 20px 0;
+    width: 80%;
 }
 .res_inner {
-	margin: 10px;
-	box-shadow: 0 10px 10px -6px rgba(0, 0, 0, 0.3);
-	position: relative;
-	padding-bottom: 10px;
+    margin: 10px;
+    box-shadow: 0 10px 10px -6px rgba(0, 0, 0, 0.3);
+    position: relative;
+    padding-bottom: 10px;
 }
 .res_name {
-	margin: 10px 10px;
+    margin: 10px 10px;
 }
 .res_description {
-	margin: 12px 20px;
-	font-weight: lighter;
+    margin: 12px 20px;
+    font-weight: lighter;
 }
 .res_posted_date {
-	position: absolute;
-	font-size: 12px;
-	right: 2px;
-	bottom: 2px;
+    position: absolute;
+    font-size: 12px;
+    right: 2px;
+    bottom: 2px;
 }
 .res_report_popup {
-	position: absolute;
-	right: 0;
-	bottom: 0;
-	padding: 20px;
-	border-radius: 6px;
-	background-color: white;
-	box-shadow: 5px 5px 0 0 rgba(0, 0, 0, 0.4), 10px 10px 0 0 rgba(0, 0, 0, 0.3), 15px 15px 0 0 rgba(0, 0, 0, 0.2), 20px 20px 0 0 rgba(0, 0, 0, 0.1);
-	border: 1px solid;
-	animation: fadeIn .3s;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 20px;
+    border-radius: 6px;
+    background-color: white;
+    box-shadow: 5px 5px 0 0 rgba(0, 0, 0, 0.4), 10px 10px 0 0 rgba(0, 0, 0, 0.3), 15px 15px 0 0 rgba(0, 0, 0, 0.2), 20px 20px 0 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid #8d8a8a;
+    animation: fadeIn .3s;
 }
 @keyframes fadeIn {
-	0% {
-		opacity: 0;
-		translate: 20px 20px;
-	}
-	100% {
-		translate: 0;
-		opacity: 1;
-	}
+    0% {
+        opacity: 0;
+        translate: 20px 20px;
+    }
+    100% {
+        translate: 0;
+        opacity: 1;
+    }
 }
 .res_report_popup input {
-	margin: 10px;
-	padding: 4px 8px;
-	border: none;
-	background-color: #57a2ec;
-	color: white;
-	border-radius: 6px;
-	cursor: pointer;
-	transition: color .3s, opacity .3s;
+    margin: 10px;
+    padding: 4px 8px;
+    border: none;
+    background-color: #57a2ec;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: color .3s, opacity .3s;
 }
 .res_report_popup input:hover {
-	opacity: 0.5;
-	color: black;
+    opacity: 0.5;
+    color: black;
 }
-.res_report_popup a {
 
-}
 .res_edit_button, .res_delete_button, .res_report_button {
-	margin: 0 10px;
+    margin: 0 10px;
 }
 
 .response_form_inner {
-	height: calc(100vh - 60px);
+    height: calc(100vh - 60px);
 }
 .response_form_container {
-	position: fixed;
-	right: 10vw;
-	top: calc((100vh - 60px)/2 - 100px);
+    position: fixed;
+    right: 10vw;
+    top: calc((100vh - 60px)/2 - 100px);
 }
 .response_form_container textarea {
-	width: 20vw;
-	height: 200px;
-	opacity: 0.5;
+    width: 20vw;
+    height: 200px;
+    opacity: 0.5;
 }
 .res_form_submit_container {
-	display: flex;
-	justify-content: flex-end;
-	margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 10px;
 }
 .res_form_submit {
-	background-color: #57a2ec;
-	color: #f9f9f9;
-	display: block;
-	padding: 3px 12px;
-	border-radius: 6px;
-	border: none;
-	font-size: 26px;
-	transition: color.3s, opacity .3s;
+    background-color: #57a2ec;
+    color: #f9f9f9;
+    display: block;
+    padding: 3px 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 26px;
+    transition: color.3s, opacity .3s;
 }
 .res_form_submit:hover {
-	opacity: 0.5;
-	color: black;
+    opacity: 0.5;
+    color: black;
 }

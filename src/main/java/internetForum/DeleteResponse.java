@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import internetForum.validation.AdminValidation;
 import internetForum.validation.NumberValidation;
 import model.DeleteResponseModel;
 import model.FetchResponse;
@@ -26,8 +27,8 @@ public class DeleteResponse extends HttpServlet {
         // responseIdの取得
         String responseIdStr = request.getParameter("id");
         HttpSession session = request.getSession(false);
-        // admin sessionを持っていないか、無効なresponseIdの場合はNOT FOUNDを表示する
-        if (session.getAttribute("adminSession") != null && (Integer) session.getAttribute("adminSession") != 0 && responseIdStr != null && NumberValidation.isInteger(responseIdStr)) {
+        // adminセッションを持ち、有効なresponseIdの場合
+        if (new AdminValidation().valid(session) && new NumberValidation().isInteger(responseIdStr)) {
             // responseIdからresponseを取得して、リクエストスコープに保存
             Response res = new FetchResponse().fetch(Integer.parseInt(responseIdStr));
             request.setAttribute("response", res);
@@ -36,6 +37,7 @@ public class DeleteResponse extends HttpServlet {
             dispatcher.forward(request, response);
             return;
         }
+        // admin sessionを持っていないか、無効なresponseIdの場合はNOT FOUNDを表示する
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/notFound.jsp");
         dispatcher.forward(request, response);
     }

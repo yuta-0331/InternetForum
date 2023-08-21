@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import internetForum.validation.LoginValidation;
 import model.FetchThreadListByUserId;
 import model.FetchUserInfo;
 import model.schema.User;
@@ -28,7 +29,7 @@ public class AccountInfo extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		// login sessionを持っていない場合、TOPページへリダイレクトする。
-        if (session == null || ((Integer) session.getAttribute("loginSession") == null)) {
+        if (!new LoginValidation().valid(session)) {
             response.sendRedirect("top");
             return;
         }

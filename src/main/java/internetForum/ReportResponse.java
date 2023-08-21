@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import internetForum.validation.LoginValidation;
 import internetForum.validation.NumberValidation;
 import model.FetchResponse;
 import model.ReportResponseModel;
@@ -29,18 +30,21 @@ public class ReportResponse extends HttpServlet {
 	 // responseIdの取得
         String responseIdStr = request.getParameter("id");
         HttpSession session = request.getSession(false);
-        // login sessionを持っていないか、無効なresponseIdの場合はNOT FOUNDを表示する
-        if (session.getAttribute("loginSession") != null && responseIdStr != null && NumberValidation.isInteger(responseIdStr)) {
+        // ログインセッションを持っていて、有効なresponseIdの場合
+        if (new LoginValidation().valid(session) && new NumberValidation().isInteger(responseIdStr)) {
             // responseIdからresponseを取得して、リクエストスコープに保存
             Response res = new FetchResponse().fetch(Integer.parseInt(responseIdStr));
-            request.setAttribute("response", res);
-            // reportFlagをtrueにして、レスに通報確認のポップアップを表示させる
-            request.setAttribute("reportFlag" + res.getResponseId(), true);
-            
-            RequestDispatcher dispatcher = request.getRequestDispatcher("../thread?id=" + res.getThreadId());
-            dispatcher.forward(request, response);
-            return;
+            if (res.isDeleteFlag()) {
+                request.setAttribute("response", res);
+                // reportFlagをtrueにして、レスに通報確認のポップアップを表示させる
+                request.setAttribute("reportFlag" + res.getResponseId(), true);
+                
+                RequestDispatcher dispatcher = request.getRequestDispatcher("../thread?id=" + res.getThreadId());
+                dispatcher.forward(request, response);
+                return;
+            }
         }
+        // login sessionを持っていないか、無効なresponseIdの場合はNOT FOUNDを表示する
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/notFound.jsp");
         dispatcher.forward(request, response);
 	}
@@ -52,13 +56,14 @@ public class ReportResponse extends HttpServlet {
 	    String responseIdStr = request.getParameter("id");
 	    String threadIdStr = request.getParameter("threadId");
         HttpSession session = request.getSession(false);
-	    // login sessionを持っていないか、無効なresponseIdの場合はNOT FOUNDを表示する
-        if (session.getAttribute("loginSession") != null && responseIdStr != null && NumberValidation.isInteger(responseIdStr)) {
-            int row = new ReportResponseModel().report(Integer.parseInt(responseIdStr));
+        // loginセッションを持っていて、有効なresponseIdの場合
+        if (new LoginValidation().valid(session) && new NumberValidation().isInteger(responseIdStr)) {
+            new ReportResponseModel().report(Integer.parseInt(responseIdStr));
             RequestDispatcher dispatcher = request.getRequestDispatcher("../thread?id=" + threadIdStr);
             dispatcher.forward(request, response);
             return;
         }
+        // login sessionを持っていないか、無効なresponseIdの場合はNOT FOUNDを表示する
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/notFound.jsp");
         dispatcher.forward(request, response);
 	}

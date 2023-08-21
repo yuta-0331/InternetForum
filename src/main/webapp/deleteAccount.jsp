@@ -1,3 +1,4 @@
+<%@page import="model.schema.User"%>
 <%@page import="internetForum.AbsolutePass"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -6,26 +7,26 @@
     <head>
         <meta charset="UTF-8">
         <meta name="description" content="会員制の掲示板サイトです">
-        <title>ページが見つかりません</title>
+        <title>スレッド</title>
         <style><%@include file="/WEB-INF/css/style.css" %></style>
     </head>
     <body>
        <%
-       Integer adminSession = (Integer) session.getAttribute("adminSession");
-       Integer loginSession = (Integer) session.getAttribute("loginSession");
-       
-       boolean isAdmin = false, isLogin = false;
-       if (adminSession != null && adminSession != 0) {
-           isAdmin = true;
-       }
-       if (loginSession != null) {
-           isLogin = true;
-       }
+           Integer adminSession = (Integer) session.getAttribute("adminSession");
+           Integer loginSession = (Integer) session.getAttribute("loginSession");
+           
+           boolean isAdmin = false, isLogin = false;
+           if (adminSession != null && adminSession != 0) {
+               isAdmin = true;
+           }
+           if (loginSession != null) {
+               isLogin = true;
+           }
        %>
        <header>
            <div class="header_outer">
                <div class="header_logo">
-                   <a href="top" rel="TOPページへ移動">the掲示板</a>
+                   <a href='<%= AbsolutePass.PASS + "top" %>' rel="TOPページへ移動">the掲示板</a>
                </div>
                <nav class="header_nav">
                    <ul class="header_menu">
@@ -46,8 +47,30 @@
            </div>
        </header>
        <main>
-           <div class="not_found_container">
-               <h1>NOT FOUND</h1>
+           <%
+	           User user = (User) request.getAttribute("userInfo");
+           %>
+           <div class="account_info_container">
+               <div class="account_info_inner">
+                   <h2 class="account_info_heading">会員情報</h2>
+                   <dl class="name_profile_container">
+                       <dt>ユーザー名:</dt>
+                       <dd class="account_name"><%= user.getUserName() %></dd>
+                       <dt>プロフィール:</dt>
+                       <dd class="account_profile">
+                           <%= user.getProfile() %>
+                       </dd>
+                   </dl>
+               </div>
+               <div>
+                   <p>アカウントを削除しますか？</p>
+                   <form action='<%= AbsolutePass.PASS + "account_info/delete?id=" + user.getUserId() %>' method='post'>
+                   <input type='submit' value='削除'>
+                   <a>キャンセル</a>
+                   <%= // csrf tokenの送信
+                       "<input type='text' name='csrfToken' value='" +(String) request.getSession(false).getAttribute("csrfToken") + "' hidden>" %>
+                   </form>
+               </div>
            </div>
        </main>
        <footer>

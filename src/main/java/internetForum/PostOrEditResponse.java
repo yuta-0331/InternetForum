@@ -28,7 +28,8 @@ public class PostOrEditResponse extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HttpSession session = request.getSession(false);
         String responseIdStr = request.getParameter("id");
-        if (NumberValidation.isInteger(responseIdStr)) {
+        // 有効なresponseIdの場合
+        if (new NumberValidation().isInteger(responseIdStr)) {
             Integer responseId = Integer.parseInt(responseIdStr);
             // responseIdからresponseを取得
             Response res = new FetchResponse().fetch(responseId);
@@ -40,7 +41,7 @@ public class PostOrEditResponse extends HttpServlet {
                 return;
             }
         }
-        
+        // 無効なresponseIdの場合、NOT FOUNDを表示する
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/notFound.jsp");
         dispatcher.forward(request, response);
         
@@ -63,7 +64,7 @@ public class PostOrEditResponse extends HttpServlet {
 		// 返信フォームの入力チェック
 		if (new PostResponseValidation().validation(desc)) {
 		    // resonseIdStrがnullじゃなく、数値変換可能であれば、レス編集のメソッドを実行
-		    if (responseIdStr != null && NumberValidation.isInteger(responseIdStr)) {
+		    if (new NumberValidation().isInteger(responseIdStr)) {
 		        new EditResponseModel().editResponse(threadId, Integer.parseInt(responseIdStr), desc);
 		    } else {
 		        // レス投稿のメソッド実行

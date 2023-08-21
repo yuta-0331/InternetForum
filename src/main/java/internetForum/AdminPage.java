@@ -11,13 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import internetForum.validation.NumberValidation;
+import internetForum.validation.AdminValidation;
 import model.FetchReportedResponseList;
-import model.FetchResponse;
-import model.FetchThreadListByUserId;
-import model.FetchUserInfo;
 import model.schema.Response;
-import model.schema.User;
 
 /**
  * Servlet implementation class AdminPage
@@ -31,18 +27,19 @@ public class AdminPage extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	 // responseIdの取得
-        String responseIdStr = request.getParameter("id");
         HttpSession session = request.getSession(false);
-        // admin sessionを持っていないか、無効なresponseIdの場合はNOT FOUNDを表示する
-        if (session.getAttribute("adminSession") != null && (Integer) session.getAttribute("adminSession") != 0) {
-         // 通報されたresponse listを取得するメソッドを実行する
+        // adminセッションを持ってる場合
+        if (new AdminValidation().valid(session)) {
+            // 通報されたresponse listを取得するメソッドを実行する
             ArrayList<Response> responseList = new FetchReportedResponseList().fetch();
-            // 取得したデータをそれぞれリクエストスコープに渡す
+            // 取得したデータをリクエストスコープに渡す
             request.setAttribute("responseList", responseList);
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/adminPage.jsp");
             dispatcher.forward(request, response);
             return;
         }
+        
+        // admin sessionを持っていない場合はNOT FOUNDを表示する
         RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/notFound.jsp");
         dispatcher.forward(request, response);
 	}

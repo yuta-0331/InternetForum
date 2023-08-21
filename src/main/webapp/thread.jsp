@@ -52,27 +52,9 @@
        </header>
        <main>
            <%
-               //               ThreadWithResponseList list = (ThreadWithResponseList) request.getAttribute("threadWithResponseList");
-               //               Thread thread = list.getThread();
-               //               ArrayList<Response> responseList = list.getResponseList();
-               Thread thread = new Thread.Builder(1).with(b -> {
-                   b.title = "title";
-                   b.userId = 12;
-                   b.userName = "yuta";
-                   b.desc = "スレッド本文";
-                   b.createDay = "12/1";
-               }).build();
-
-               Response sampleRes = new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-                   b.update = "update";
-                   b.report = true;
-               }).build();
-               ArrayList<Response> responseList = new ArrayList<>(Arrays.asList(sampleRes, sampleRes, sampleRes));
+               ThreadWithResponseList list = (ThreadWithResponseList) request.getAttribute("threadWithResponseList");
+               Thread thread = list.getThread();
+               ArrayList<Response> responseList = list.getResponseList();
            %>
            <div class="thread_list_response_form_container">
                <div class="thread_container">
@@ -100,7 +82,7 @@
                                        out.println("<span><small style='color: red'>(編集済)</small></span>");
                                    }
 
-                                   out.println("<span class='res_posted_date'>" + res.getPostedDate() + "</span></p>");
+                                   out.println("<span class='res_posted_date'>" + res.getPostedDate() + "</span></p><!-- .res_description -->");
                                    // ログイン中かつ自分以外の投稿に通報ボタンを表示する
                                    if (isLogin && loginSession != res.getUserId()) {
                                        out.println("<div class='res_report_container'><a rel='通報ボタン' href='" + AbsolutePass.PASS + "response/report?id=" + res.getResponseId() + "'><span class='res_report_button'>"
@@ -110,13 +92,15 @@
                                        Boolean isReport = (Boolean) request.getAttribute("reportFlag" + res.getResponseId());
                                        if (isReport != null && isReport ) {
                                            out.println("<form class='res_report_popup' method='post' action='" + AbsolutePass.PASS + "response/report?id=" + res.getResponseId() + "'>" 
-                                           + "<p>通報しますか？</p>"
+                                           + "<p id='report'>通報しますか？</p>"
                                            + "<input type='submit' value='通報'>"
                                            + "<a href='" + AbsolutePass.PASS + "thread?id=" + res.getThreadId() + "'>キャンセル</a>"
                                            + "<input type='text' name='csrfToken' value='" +(String) request.getSession(false).getAttribute("csrfToken") + "' hidden>"
                                            + "<input type='text' name='responseId' value='" + res.getResponseId() + "' hidden>"
                                            + "<input type='text' name='threadId' value='" + res.getThreadId() + "' hidden>"
-                                           + "</form></div>");
+                                           + "</form></div><!-- .res_report_container -->");
+                                       } else {
+                                           out.println("</div><!-- .res_report_container -->"); // 通報フラグがfalseの場合の閉じタグ
                                        }
                                    }
                                    // 管理者なら削除ボタンを表示する
@@ -182,5 +166,15 @@
                </div>
            </div>
        </footer>
+       <script type="text/javascript">
+           // 通報ボタンが押された際の画面再読み込み時に、当該返信の位置までスクロールさせる
+           window.onload = () => {
+        	   const $elem = document.getElementById("report");
+        	   if (!$elem) return;
+               const rect = $elem.getBoundingClientRect();
+               const elemTop = rect.top + window.pageYOffset - 400;
+               document.documentElement.scrollTop = elemTop;
+           }
+       </script>
     </body>
 </html>
