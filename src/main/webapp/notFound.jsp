@@ -25,7 +25,7 @@
        <header>
            <div class="header_outer">
                <div class="header_logo">
-                   <a href="top" rel="TOPページへ移動">the掲示板</a>
+                   <a href='<%= AbsolutePass.PASS + "top" %>' rel="TOPページへ移動">the掲示板</a>
                </div>
                <nav class="header_nav">
                    <ul class="header_menu">

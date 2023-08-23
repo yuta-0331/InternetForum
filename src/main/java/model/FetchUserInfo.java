@@ -17,9 +17,10 @@ public class FetchUserInfo {
                         + "integratedSecurity=false;user=sa;password=1234;");
                 
                 ){
-            String queryUser = "SELECT user_id, user_name, profile, registration_date, delete_flag, report "
+            String queryUser = "SELECT [user].user_id, user_name, profile, registration_date, delete_flag, report, admin_id "
                     + "FROM [user] "
-                    + "WHERE user_id = ?";
+                    + "LEFT JOIN admin ON [user].user_id = admin.user_id "
+                    + "WHERE [user].user_id = ?";
             PreparedStatement statement = connection.prepareStatement(queryUser);
             statement.setInt(1, userId);
             ResultSet resultSet = statement.executeQuery();
@@ -31,6 +32,13 @@ public class FetchUserInfo {
                 String registrationDate = resultSet.getString("registration_date");
                 boolean deleteFlag = resultSet.getBoolean("delete_flag");
                 boolean report = resultSet.getBoolean("report");
+                int adminId =  resultSet.getInt("admin_id");
+                boolean isAdmin;
+                if (adminId != 0) {
+                    isAdmin = true;
+                } else {
+                    isAdmin = false;
+                }
                 // Userインスタンスを作成
                 user = new User.Builder(userId)
                         .with(arg -> {
@@ -39,6 +47,7 @@ public class FetchUserInfo {
                             arg.registrationDate = registrationDate;
                             arg.deleteFlag = deleteFlag;
                             arg.report = report;
+                            arg.isAdmin = isAdmin;
                         })
                         .build();
             } else {

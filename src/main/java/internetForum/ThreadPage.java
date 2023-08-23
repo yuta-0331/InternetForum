@@ -33,7 +33,7 @@ public class ThreadPage extends HttpServlet {
 	    }
 	    // クエリパラメータが存在する場合
 	    ThreadWithResponseList list = new FetchThreadWithResponseList().fetch(Integer.parseInt(threadIdStr));
-	    if (list == null) {
+	    if (list == null || !list.getThread().isDeleteFlag()) {
 	        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/notFound.jsp");
             dispatcher.forward(request, response);
             return;
@@ -42,14 +42,6 @@ public class ThreadPage extends HttpServlet {
 	    
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/thread.jsp");
 		dispatcher.forward(request, response);
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }

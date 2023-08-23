@@ -192,6 +192,10 @@ top page
 .genre_list_container {
     margin-left: 100px;
 }
+.genre_list_container li, .info_container li {
+	font-size: 24px;
+	margin: 6px 10px;
+}
 .info_genre_list_container h2::after {
     content: "";
     display: block;
@@ -392,11 +396,11 @@ account info
     padding: 2px 4px;
     position: relative;
 }
-.account_thread_container li:nth-child(even) {
+.account_thread_container li:nth-child(odd) {
     background-color: #8d8a8a;
     opacity: 0.9;
 }
-.account_thread_container li:nth-child(even) a {
+.account_thread_container li:nth-child(odd) a {
     color: #f9f9f9;
 }
 .account_thread_container li span {
@@ -565,9 +569,126 @@ thread
     border-radius: 6px;
     border: none;
     font-size: 26px;
-    transition: color.3s, opacity .3s;
+    transition: color .3s, opacity .3s;
 }
 .res_form_submit:hover {
     opacity: 0.5;
     color: black;
+}
+.breadcrumbs {
+	display: flex;
+	margin-bottom: 50px;
+	margin-right: 400px;
+}
+/*-----------------------
+profile page
+-------------------------*/
+.profile_container {
+	border: 1px solid #f9f9f9;
+    padding: 10px 20px;
+    border-radius: 6px;
+    position: relative;
+}
+.user_report_button {
+	position: absolute;
+	right: 10px;
+	bottom: 10px;
+}
+.account_thread_container tr:nth-child(even) {
+    background-color: #8d8a8a;
+    opacity: 0.9;
+    color: #f9f9f9;
+}
+.account_thread_container tr:nth-child(even) a {
+    color: #f9f9f9;
+}
+.account_thread_container th {
+    padding: 10px 20px;
+}
+
+/*-----------------------
+thread list
+-------------------------*/
+.thread_list_container {
+	position: relative;
+}
+table {
+   border-collapse: collapse;
+   border: 3px double #f9f9f9;
+}
+.thread_list_inner tr:nth-child(even) {
+    background-color: #8d8a8a;
+    opacity: 0.9;
+    color: #f9f9f9;
+}
+.thread_list_inner tr:nth-child(even) a {
+	color: #f9f9f9;
+}
+.thread_list_inner th {
+	padding: 10px 20px;
+}
+.create_thread_wrapper a {
+    background-color: #57a2ec;
+    color: #f9f9f9;
+    display: block;
+    padding: 3px 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 26px;
+    transition: color .3s, opacity .3s;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.create_thread_wrapper a:hover {
+	opacity: 0.5;
+    color: black;
+}
+/*-----------------------
+edit profile
+-------------------------*/
+.edit_user_form_container {
+	padding: 20px 40px;
+	position: relative;
+}
+.edit_user_form_container input {
+	width: 300px;
+}
+.edit_user_form_container textarea {
+	width: 300px;
+	height: 200px;
+}
+.edit_user_form_submit input {
+    width: 80px;
+    background-color: #57a2ec;
+    color: #f9f9f9;
+    display: block;
+    padding: 3px 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 26px;
+    transition: color .3s, opacity .3s;
+    cursor: pointer;
+    position: absolute;
+    bottom: -20px;
+    right: 50px;
+}
+.edit_user_form_submit input:hover {
+    opacity: 0.5;
+    color: black;
+}
+/*-----------------------
+admin page
+-------------------------*/
+.reported_item_container {
+	display: flex;
+}
+.reported_response_container, 
+.reported_user_container,
+.reported_thread_container {
+	padding: 0 20px;
+}
+.username_label, .profile_label {
+	display: flex;
+	flex-direction: column;
 }

@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import internetForum.validation.AdminValidation;
 import internetForum.validation.NumberValidation;
+import model.EditAccountInfoModel;
 import model.FetchUserInfo;
 import model.schema.User;
 
@@ -54,7 +54,20 @@ public class EditAccountInfo extends HttpServlet {
 		if (new NumberValidation().isInteger(userIdStr) && session!= null && Integer.parseInt(userIdStr) == (Integer) session.getAttribute("loginSession")) {
 		    String userName = request.getParameter("userName");
 		    String profile = request.getParameter("profile");
+		    if (userName.equals("")) {
+		        response.sendRedirect("edit?id=" + userIdStr);
+		        return;
+		    }
+		    int row = new EditAccountInfoModel().editAccount(Integer.parseInt(userIdStr), userName, profile);
+		    if (row != 0) {
+		        response.sendRedirect("../account_info");
+		        return;
+		    }
 		}
+		// login sessionを持っていないか、無効なuserIdの場合、loginユーザーと異なるuserIdの場合はNOT FOUNDを表示する
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/notFound.jsp");
+        dispatcher.forward(request, response);
+		
 	}
 
 }

@@ -51,19 +51,39 @@
        </header>
        <main>
            <div class="thread_list_container">
-               <ul>
+               <div class='breadcrumbs'>
+                   <a href="top" rel="TOPページへ移動">>TOP</a>
+               </div>
+               <div class='thread_list_inner'>
                    <%
                        ArrayList<Thread> threadList = (ArrayList<Thread>)request.getAttribute("threadList");
 
                        if (threadList.size() == 0) {
                            out.println("<li>このジャンルはまだスレッドがありません</li>");
                        } else {
+                           out.println("<table width='600px'>"
+                                   + "<tr>"
+                                   + "<th>スレッドタイトル</th>"
+                                   + "<th>スレ主</th>"
+                                   + "<th>最終書込み時間</th>"
+                                   + "</tr>");
                            for (Thread th : threadList) {
-                               out.println("<li><a href='thread?id=" + th.getThreadId() + "'>" + th.getTitle() + "</a></li>");
+                               if (!th.isDeleteFlag()) {
+                                   continue;
+                               }
+                               out.println("<tr align='center'>"
+                                       + "<td height='30px'><a href='thread?id=" + th.getThreadId() + "'>" + th.getTitle() + "</a></td>"
+                                       + "<td><a href='profile?id=" + th.getUserId() + "'>" + th.getUserName() + "</a></td>"
+                                       + "<td>" + th.getLastWrittenDate() + "</td>"
+                                       + "</tr>");
                            }
+                           out.println("</table>");
                        }
                    %>
-               </ul>
+               </div>
+               <div class="create_thread_wrapper">
+                   <a href="create_thread" rel="スレッド作成画面へ移動"><span>スレッド作成</span></a>
+               </div>
            </div>
        </main>
        <footer>

@@ -51,6 +51,7 @@
        <main>
            <%
                User user = (User) request.getAttribute("user");
+               ArrayList<Thread> threadList = (ArrayList<Thread>) request.getAttribute("threadList");
            %>
            <div class="account_info_container">
                <div class="account_info_inner">
@@ -76,15 +77,25 @@
                    <div class="account_thread_heading_container">
                        <h2 class="account_thread_heading">作成したスレッド</h2>
                    </div>
-                       <ul>
-                           <%
-	                           ArrayList<Thread> threadList = (ArrayList<Thread>)request.getAttribute("threadList");
-                               
-	                           for (Thread th : threadList) {
-	                               out.println("<li><a href='thread?id=" + th.getThreadId() + "'>" + th.getTitle() + "<span>(" + th.getCreateDay() + ")</span>" + "</a></li>");
-	                           }
-                           %>
-                       </ul>
+                       <%
+                           out.println("<table width='600px'>"
+                                       + "<tr>"
+                                       + "<th>スレッドタイトル</th>"
+                                       + "<th>作成日</th>"
+                                       + "<th>最終書込み時間</th>"
+                                       + "</tr>");
+                               for (Thread th : threadList) {
+                                   if (!th.isDeleteFlag()) {
+                                       continue;
+                                   }
+                                   out.println("<tr align='center'>"
+                                           + "<td height='30px'><a href='thread?id=" + th.getThreadId() + "'>" + th.getTitle() + "</a></td>"
+                                           + "<td>" + th.getCreateDay() + "</td>"
+                                           + "<td>" + th.getLastWrittenDate() + "</td>"
+                                           + "</tr>");
+                               }
+                               out.println("</table>");
+                       %>
                    <div class="account-create_thread_container">
                        <a href="create_thread" rel="スレッド作成画面へ移動"><span>スレッド作成</span></a>
                    </div>

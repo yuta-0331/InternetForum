@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
-import javax.servlet.RequestDispatcher;
-
 public class UserSignUp {
     public int signup(String email, String userName, String password) {
         try (

@@ -6,8 +6,8 @@ public class User {
     private int userId;
     private String userName;
     private String mail;
-    private String password;
-    private String hashedPassword;
+//    private String password;
+//    private String hashedPassword;
     private String profile;
     private String registrationDate;
     private boolean deleteFlag;
@@ -18,8 +18,8 @@ public class User {
         this.userId = builder.userId;
         this.userName = builder.userName;
         this.mail = builder.mail;
-        this.password = builder.password;
-        this.hashedPassword = builder.hashedPassword;
+//        this.password = builder.password;
+//        this.hashedPassword = builder.hashedPassword;
         this.profile = builder.profile;
         this.registrationDate = builder.registrationDate;
         this.deleteFlag = builder.deleteFlag;
@@ -71,8 +71,8 @@ public class User {
         private int userId;
         public String userName;
         public String mail;
-        public String password;
-        public String hashedPassword;
+//        public String password;
+//        public String hashedPassword;
         public String profile;
         public String registrationDate;
         public boolean deleteFlag;

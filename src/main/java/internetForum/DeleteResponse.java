@@ -46,6 +46,7 @@ public class DeleteResponse extends HttpServlet {
      * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
      */
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String isAdminPage = request.getParameter("adminPage");
         // admin sessionを持っているポストのみ実行する
         HttpSession session = request.getSession(false);
         if (session != null && (Integer) session.getAttribute("adminSession") != 0) {
@@ -54,8 +55,17 @@ public class DeleteResponse extends HttpServlet {
             String threadIdStr = request.getParameter("threadId");
             int row = new DeleteResponseModel().delete(Integer.parseInt(responseIdStr));
             if (row != 0) {
-                response.sendRedirect("../thread?id=" + threadIdStr);
+                // 管理ページからの削除postは管理ページにリダイレクトする
+                if (isAdminPage == null || isAdminPage != null && isAdminPage.equals("true")) {
+                    response.sendRedirect("../admin");
+                    return;
+                } else {
+                    response.sendRedirect("../thread?id=" + threadIdStr);
+                    return;
+                }
             }
         }
+        RequestDispatcher dispatcher = request.getRequestDispatcher("../notFound.jsp");
+        dispatcher.forward(request, response);
     }
 }

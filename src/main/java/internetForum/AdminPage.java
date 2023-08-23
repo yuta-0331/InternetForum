@@ -13,7 +13,11 @@ import javax.servlet.http.HttpSession;
 
 import internetForum.validation.AdminValidation;
 import model.FetchReportedResponseList;
+import model.FetchReportedThreadList;
+import model.FetchReportedUserList;
 import model.schema.Response;
+import model.schema.Thread;
+import model.schema.User;
 
 /**
  * Servlet implementation class AdminPage
@@ -30,10 +34,16 @@ public class AdminPage extends HttpServlet {
         HttpSession session = request.getSession(false);
         // adminセッションを持ってる場合
         if (new AdminValidation().valid(session)) {
-            // 通報されたresponse listを取得するメソッドを実行する
+            // 通報されたresponse, user, threadのlistを取得するメソッドを実行する
             ArrayList<Response> responseList = new FetchReportedResponseList().fetch();
+            ArrayList<User> userList = new FetchReportedUserList().fetch();
+            ArrayList<Thread> threadList = new FetchReportedThreadList().fetch();
+            
             // 取得したデータをリクエストスコープに渡す
             request.setAttribute("responseList", responseList);
+            request.setAttribute("userList", userList);
+            request.setAttribute("threadList", threadList);
+            
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/adminPage.jsp");
             dispatcher.forward(request, response);
             return;
@@ -44,11 +54,5 @@ public class AdminPage extends HttpServlet {
         dispatcher.forward(request, response);
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-	}
 
 }

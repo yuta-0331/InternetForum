@@ -22,6 +22,8 @@ public class TopPage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	    // TODO*: ユーザーがログイン中に管理者によってアカウントを削除された場合、トップページにアクセスしたらログアウト処理を強制する
+	    
 	    ArrayList<Genre> genreList = new FetchGenreList().fetch();
 	    request.setAttribute("genreList", genreList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/index.jsp");

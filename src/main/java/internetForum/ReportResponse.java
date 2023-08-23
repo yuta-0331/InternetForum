@@ -59,8 +59,7 @@ public class ReportResponse extends HttpServlet {
         // loginセッションを持っていて、有効なresponseIdの場合
         if (new LoginValidation().valid(session) && new NumberValidation().isInteger(responseIdStr)) {
             new ReportResponseModel().report(Integer.parseInt(responseIdStr));
-            RequestDispatcher dispatcher = request.getRequestDispatcher("../thread?id=" + threadIdStr);
-            dispatcher.forward(request, response);
+            response.sendRedirect("../thread?id=" + threadIdStr);
             return;
         }
         // login sessionを持っていないか、無効なresponseIdの場合はNOT FOUNDを表示する

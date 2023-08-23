@@ -13,14 +13,12 @@ public class EditResponseModel {
                         + "integratedSecurity=false;user=sa;password=1234;");
                 
                 ){
-            // 返信を編集し、スレッドの最終書き込み時間を更新する
+            // 返信を編集する
             String editSql = 
-                    "UPDATE [response] SET description = ?, update_day = GETDATE() WHERE response_id = ? "
-                    + "UPDATE thread SET last_written_date = GETDATE() WHERE thread_id = ?";
+                    "UPDATE [response] SET description = ?, update_day = GETDATE() WHERE response_id = ? ";
             PreparedStatement statement = connection.prepareStatement(editSql);
             statement.setString(1, desc);
             statement.setInt(2, responseId);
-            statement.setInt(3, threadId);
             int row = statement.executeUpdate();
             if (row == 0) {
                 return 0;

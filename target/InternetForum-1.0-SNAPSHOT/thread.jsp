@@ -52,30 +52,17 @@
        </header>
        <main>
            <%
-               //               ThreadWithResponseList list = (ThreadWithResponseList) request.getAttribute("threadWithResponseList");
-               //               Thread thread = list.getThread();
-               //               ArrayList<Response> responseList = list.getResponseList();
-               Thread thread = new Thread.Builder(1).with(b -> {
-                   b.title = "title";
-                   b.userId = 12;
-                   b.userName = "yuta";
-                   b.desc = "スレッド本文";
-                   b.createDay = "12/1";
-               }).build();
-
-               Response sampleRes = new Response.Builder(1).with(b -> {
-                   b.userName = "tanaka";
-                   b.description = "レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文レスの本文";
-                   b.postedDate = "12/2";
-                   b.userId = 13;
-                   b.deleteFlag = true;
-                   b.update = "update";
-                   b.report = true;
-               }).build();
-               ArrayList<Response> responseList = new ArrayList<>(Arrays.asList(sampleRes, sampleRes, sampleRes));
+               ThreadWithResponseList list = (ThreadWithResponseList) request.getAttribute("threadWithResponseList");
+               Thread thread = list.getThread();
+               ArrayList<Response> responseList = list.getResponseList();
            %>
            <div class="thread_list_response_form_container">
                <div class="thread_container">
+                   <div class='breadcrumbs'>
+                       <a href="top" rel="TOPページへ移動">>TOP</a>
+                       <%= "<a rel='" + thread.getGenreName()
+                            + "のスレッド一覧ページへ移動' href='thread_list?genre=" + thread.getGenreId() + "'>>" + thread.getGenreName() + "</a>" %>
+                   </div>
                    <div class="thread_outer">
                        <div class="threads_inner">
                            <h1 class="thread_name"><%= "#" + thread.getThreadId() + ": " + thread.getTitle() %></h1>
@@ -83,6 +70,14 @@
                            <p class="thread_desc"><%= thread.getDesc() %></p>
                            <p class="thread_create_day"><%= thread.getCreateDay() %></p>
                        </div>
+                       <%
+                    // ログイン中かつ自分以外の投稿に通報ボタンを表示する
+                       if (isLogin && loginSession != thread.getUserId()) {
+                           out.println("<div class='thread_report_container'><a rel='通報ボタン' href='" + AbsolutePass.PASS + "thread/report?id=" + thread.getThreadId() + "'><span class='thread_report_button'>"
+                                   + "通報"
+                                   + "</span></a></div>");
+                       }
+                       %>
                    </div>
                    <div class="response_outer">
                        <%
@@ -92,7 +87,7 @@
                                // deleteFlagがtrueならresponseを表示
                                if (res.isDeleteFlag()) {
                                    out.println("<div class='res_inner'><p class='res_name'>[" + i++ + "] "
-                                           + "<a href='profile?id=" + res.getUserId() + "' rel='レス者のプロフィールページへ'>" + res.getUserName() + "</a></p>"
+                                           + "<a href='" + AbsolutePass.PASS + "profile?id=" + res.getUserId() + "' rel='レス者のプロフィールページへ'>" + res.getUserName() + "</a></p>"
                                            + "<p class='res_description'>"
                                            +  res.getDescription());
                                    // 編集された値なら（編集済）表示を付与する
@@ -100,7 +95,7 @@
                                        out.println("<span><small style='color: red'>(編集済)</small></span>");
                                    }
 
-                                   out.println("<span class='res_posted_date'>" + res.getPostedDate() + "</span></p>");
+                                   out.println("<span class='res_posted_date'>" + res.getPostedDate() + "</span></p><!-- .res_description -->");
                                    // ログイン中かつ自分以外の投稿に通報ボタンを表示する
                                    if (isLogin && loginSession != res.getUserId()) {
                                        out.println("<div class='res_report_container'><a rel='通報ボタン' href='" + AbsolutePass.PASS + "response/report?id=" + res.getResponseId() + "'><span class='res_report_button'>"
@@ -110,13 +105,15 @@
                                        Boolean isReport = (Boolean) request.getAttribute("reportFlag" + res.getResponseId());
                                        if (isReport != null && isReport ) {
                                            out.println("<form class='res_report_popup' method='post' action='" + AbsolutePass.PASS + "response/report?id=" + res.getResponseId() + "'>" 
-                                           + "<p>通報しますか？</p>"
+                                           + "<p id='report'>通報しますか？</p>"
                                            + "<input type='submit' value='通報'>"
                                            + "<a href='" + AbsolutePass.PASS + "thread?id=" + res.getThreadId() + "'>キャンセル</a>"
                                            + "<input type='text' name='csrfToken' value='" +(String) request.getSession(false).getAttribute("csrfToken") + "' hidden>"
                                            + "<input type='text' name='responseId' value='" + res.getResponseId() + "' hidden>"
                                            + "<input type='text' name='threadId' value='" + res.getThreadId() + "' hidden>"
-                                           + "</form></div>");
+                                           + "</form></div><!-- .res_report_container -->");
+                                       } else {
+                                           out.println("</div><!-- .res_report_container -->"); // 通報フラグがfalseの場合の閉じタグ
                                        }
                                    }
                                    // 管理者なら削除ボタンを表示する
@@ -182,5 +179,15 @@
                </div>
            </div>
        </footer>
+       <script type="text/javascript">
+           // 通報ボタンが押された際の画面再読み込み時に、当該返信の位置までスクロールさせる
+           window.onload = () => {
+        	   const $elem = document.getElementById("report");
+        	   if (!$elem) return;
+               const rect = $elem.getBoundingClientRect();
+               const elemTop = rect.top + window.pageYOffset - 400;
+               document.documentElement.scrollTop = elemTop;
+           }
+       </script>
     </body>
 </html>

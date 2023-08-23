@@ -11,10 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import model.FetchThreadListByUserId;
-import model.FetchThreadWithResponseList;
 import model.FetchUserInfo;
+import model.ReportUserModel;
 import model.schema.Thread;
-import model.schema.ThreadWithResponseList;
 import model.schema.User;
 
 /**
@@ -28,10 +27,10 @@ public class ProfilePage extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	 // クエリパラメータを取得する
+	    // クエリパラメータを取得する
         String userIdStr = request.getParameter("id");
         // クエリパラメータが存在しない場合はNOT FOUNDページを表示
-        if (userIdStr == null) {
+        if (userIdStr == null || userIdStr.equals("")) {
             RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/notFound.jsp");
             dispatcher.forward(request, response);
             return;
@@ -55,12 +54,27 @@ public class ProfilePage extends HttpServlet {
 	    
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	// ユーザーの通報時に走るメソッド
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+	    // クエリパラメータを取得する
+        String userIdStr = request.getParameter("id");
+        // クエリパラメータが存在しない場合はNOT FOUNDページを表示
+        if (userIdStr == null) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/notFound.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+        // クエリパラメータが存在する場合user情報を取得する
+        User user = new FetchUserInfo().fetch(Integer.parseInt(userIdStr));
+        // user 情報が見つからないか、削除フラグが立っている場合、NOT FOUNDを表示
+        if (user == null || !user.isDeleteFlag()) {
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/notFound.jsp");
+            dispatcher.forward(request, response);
+            return;
+        }
+        // userを通報するメソッドの実行
+        new ReportUserModel().report(Integer.parseInt(userIdStr));
+        response.sendRedirect("profile?id=" + userIdStr);
 	}
 
 }
