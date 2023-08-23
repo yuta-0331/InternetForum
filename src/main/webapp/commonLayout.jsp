@@ -1,6 +1,7 @@
 <%@page import="model.FetchGenreList"%>
 <%@page import="model.schema.Genre"%>
 <%@page import="java.util.ArrayList"%>
+<%@ page import="internetForum.AbsolutePass" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -48,7 +49,42 @@
 	       </div>
 	   </header>
 	   <main>
-
+		   <div class='reported_item_container'>
+			   <div class='reported_response_container'>
+				   <%=
+					   "<a rel='削除対象のレスの書かれたスレッドへ移動' href='" + AbsolutePass.PASS + "thread?id=" + "'><p>" + "description" + "</p></a>"
+					   + "<form class='' method='post' action='" + AbsolutePass.PASS + "response/delete?id=" + "?adminPage=true'>"
+					   + "<input type='submit' value='削除'>"
+					   + "<input type='submit' value='キャンセル' formaction='" + AbsolutePass.PASS + "response/cancel_report?id=" + "'>"
+					   + "<input type='text' name='csrfToken' value='" +(String) request.getSession(false).getAttribute("csrfToken") + "' hidden>"
+					   + "<input type='text' name='responseId' value='" + "' hidden>"
+					   + "<input type='text' name='threadId' value='" + "' hidden>"
+					   + "</form>"
+				   %>
+			   </div>
+			   <div class='reported_user_container'>
+				   <%=
+					   "<a rel='通報されたユーザーのプロフィールへ移動' href='" + AbsolutePass.PASS + "profile?id=" + "'>"
+					   + "user name"
+					   + "</a>"
+					   + "<form method='post' action='" + AbsolutePass.PASS + "account_info/delete?id=" + "'>"
+					   + "<input type='submit' value='削除'>"
+					   + "<input type='submit' value='キャンセル' formaction='" + AbsolutePass.PASS + "profile/cancel_report?id=" + "'>"
+					   + "<input type='text' name='csrfToken' value='" +(String) request.getSession(false).getAttribute("csrfToken") + "' hidden>"
+					   + "</form>"
+				   %>
+			   </div>
+			   <div class='reported_thread_container'>
+				   <%=
+				       "<a rel='削除対象のスレッドへ移動' href='" + AbsolutePass.PASS + "thread?id=" + "'><p>" + "title" + "</p></a>"
+					   + "<form class='' method='post' action='" + AbsolutePass.PASS + "thread/delete?id='>"
+					   + "<input type='submit' value='削除'>"
+					   + "<input type='submit' value='キャンセル' formaction='" + AbsolutePass.PASS + "thread/cancel_report?id=" + "aa" + "'>"
+					   + "<input type='text' name='csrfToken' value='" +(String) request.getSession(false).getAttribute("csrfToken") + "' hidden>"
+					   + "</form>"
+				   %>
+			   </div>
+		   </div>
 	   </main>
 	   <footer>
 	       <div class="footer_container">

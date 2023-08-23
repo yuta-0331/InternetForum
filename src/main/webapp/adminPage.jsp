@@ -62,14 +62,15 @@
 		                   out.println("通報されたresponseはありません");
 		               }
 			           for (Response res : responseList) {
-			               out.println("<a rel='削除対象のレスの書かれたスレッドへ移動' href='" + AbsolutePass.PASS + "thread?id=" + res.getThreadId() + "'><p>" + res.getDescription() + "</p></a>"
+			               out.println("<div class='reported_res_inner'>"
+                                   + "<a rel='削除対象のレスの書かれたスレッドへ移動' href='" + AbsolutePass.PASS + "thread?id=" + res.getThreadId() + "'><p>" + res.getDescription() + "</p></a>"
 			                       + "<form class='' method='post' action='" + AbsolutePass.PASS + "response/delete?id=" + res.getResponseId() + "?adminPage=true'>" 
 			                       + "<input type='submit' value='削除'>"
 			                       + "<input type='submit' value='キャンセル' formaction='" + AbsolutePass.PASS + "response/cancel_report?id=" + res.getResponseId() + "'>"
 			                       + "<input type='text' name='csrfToken' value='" +(String) request.getSession(false).getAttribute("csrfToken") + "' hidden>"
 			                       + "<input type='text' name='responseId' value='" + res.getResponseId() + "' hidden>"
 			                       + "<input type='text' name='threadId' value='" + res.getThreadId() + "' hidden>"
-			                       + "</form>");
+			                       + "</form></div>");
 			           }
 		           %>               
                </div>
@@ -79,15 +80,15 @@
 	                       out.println("通報されたuserはありません");
 	                   }
 			           for (User user : userList) {
-			               out.println("<a rel='通報されたユーザーのプロフィールへ移動' href='" + AbsolutePass.PASS + "profile?id=" + user.getUserId() + "'>"
+			               out.println("<div class='reported_user_inner'>"
+                               +"<a rel='通報されたユーザーのプロフィールへ移動' href='" + AbsolutePass.PASS + "profile?id=" + user.getUserId() + "'>"
 			                   + user.getUserName()
 			                   + "</a>"
 			                   + "<form method='post' action='" + AbsolutePass.PASS + "account_info/delete?id=" + user.getUserId() + "'>"
 	                           + "<input type='submit' value='削除'>"
                                + "<input type='submit' value='キャンセル' formaction='" + AbsolutePass.PASS + "profile/cancel_report?id=" + user.getUserId() + "'>"
 	                           + "<input type='text' name='csrfToken' value='" +(String) request.getSession(false).getAttribute("csrfToken") + "' hidden>"
-			                   + "</form>"
-			                       );
+			                   + "</form></div>");
 			           }
 		           %>
                </div>
@@ -97,16 +98,16 @@
 	                       out.println("通報されたthreadはありません");
 	                   }
 	                   for (Thread thread : threadList) {
-	                       out.println("<a rel='削除対象のスレッドへ移動' href='" + AbsolutePass.PASS + "thread?id=" + thread.getThreadId() + "'><p>" + thread.getTitle() + "</p></a>"
+	                       out.println("<div class='reported_thread_inner'"
+                                   + "<a rel='削除対象のスレッドへ移動' href='" + AbsolutePass.PASS + "thread?id=" + thread.getThreadId() + "'><p>" + thread.getTitle() + "</p></a>"
 	                               + "<form class='' method='post' action='" + AbsolutePass.PASS + "thread/delete?id=" + thread.getThreadId() + "'>" 
 	                               + "<input type='submit' value='削除'>"
 	                               + "<input type='submit' value='キャンセル' formaction='" + AbsolutePass.PASS + "thread/cancel_report?id=" + thread.getThreadId() + "'>"
 	                               + "<input type='text' name='csrfToken' value='" +(String) request.getSession(false).getAttribute("csrfToken") + "' hidden>"
-	                               + "</form>");
+	                               + "</form></div>");
 	                   }
                    %>
                </div>
-           
            </div>
        </main>
        <footer>

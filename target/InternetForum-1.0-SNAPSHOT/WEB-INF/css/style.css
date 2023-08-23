@@ -683,6 +683,9 @@ admin page
 .reported_item_container {
 	display: flex;
 }
+.reported_item_container input {
+    cursor: pointer;
+}
 .reported_response_container, 
 .reported_user_container,
 .reported_thread_container {
@@ -691,4 +694,26 @@ admin page
 .username_label, .profile_label {
 	display: flex;
 	flex-direction: column;
+}
+.reported_response_container input:nth-child(1),
+.reported_user_container input:nth-child(1),
+.reported_thread_container input:nth-child(1) {
+    background-color: #57a2ec;
+    color: white;
+    border: none;
+    padding: 2px 4px;
+    border-radius: 6px;
+    margin: 0 4px;
+    transition: opacity .3s, color .3s;
+}
+.reported_response_container input:nth-child(1):hover,
+.reported_user_container input:nth-child(1):hover,
+.reported_thread_container input:nth-child(1):hover {
+    color: black;
+    opacity: 0.5;
+}
+.reported_res_inner,
+.reported_thread_inner,
+.reported_user_inner {
+
 }
