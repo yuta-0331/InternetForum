@@ -11,12 +11,11 @@ public class FetchUserInfo {
     
     public User fetch(int userId) {
         try (
-                Connection connection = 
-                        DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;database=InternetForum;"
-                        + "encrypt=true;trustServerCertificate=true;"
-                        + "integratedSecurity=false;user=sa;password=1234;");
-                
-                ){
+                Connection connection =
+                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
+                                + "encrypt=true;trustServerCertificate=true;"
+                                + "integratedSecurity=false;user=sa;password=Password.1;");
+        ){
             String queryUser = "SELECT [user].user_id, user_name, profile, registration_date, delete_flag, report, admin_id "
                     + "FROM [user] "
                     + "LEFT JOIN admin ON [user].user_id = admin.user_id "

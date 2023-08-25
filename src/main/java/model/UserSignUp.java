@@ -7,12 +7,11 @@ import java.sql.PreparedStatement;
 public class UserSignUp {
     public int signup(String email, String userName, String password) {
         try (
-                Connection connection = 
-                        DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;database=InternetForum;"
-                        + "encrypt=true;trustServerCertificate=true;"
-                        + "integratedSecurity=false;user=sa;password=1234;");
-                
-                ){
+                Connection connection =
+                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
+                                + "encrypt=true;trustServerCertificate=true;"
+                                + "integratedSecurity=false;user=sa;password=Password.1;");
+        ){
             
             String signUpSql = 
                     "INSERT INTO [user] (user_name, mail_address, hashed_password, registration_date) VALUES(?, ?, ?, GETDATE())";

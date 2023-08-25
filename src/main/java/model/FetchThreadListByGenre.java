@@ -11,12 +11,11 @@ import model.schema.Thread;
 public class FetchThreadListByGenre {
     public ArrayList<Thread> fetch(int genreId) {
         try (
-                Connection connection = 
-                        DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;database=InternetForum;"
-                        + "encrypt=true;trustServerCertificate=true;"
-                        + "integratedSecurity=false;user=sa;password=1234;");
-                
-                ){
+                Connection connection =
+                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
+                                + "encrypt=true;trustServerCertificate=true;"
+                                + "integratedSecurity=false;user=sa;password=Password.1;");
+        ){
             // 指定のジャンルのthreadを取得するクエリ
             String queryThreadList =
                     "SELECT "

@@ -7,12 +7,11 @@ import java.sql.PreparedStatement;
 public class ReportThreadModel {
     public int report(int threadId) {
         try (
-                Connection connection = 
-                        DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;database=InternetForum;"
-                        + "encrypt=true;trustServerCertificate=true;"
-                        + "integratedSecurity=false;user=sa;password=1234;");
-                
-                ){
+                Connection connection =
+                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
+                                + "encrypt=true;trustServerCertificate=true;"
+                                + "integratedSecurity=false;user=sa;password=Password.1;");
+        ){
             // 返信の通報フラグを変更する
             String reportSql = 
                     "UPDATE [thread] SET report = 1 WHERE thread_id = ? ";

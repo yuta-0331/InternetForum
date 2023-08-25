@@ -7,12 +7,11 @@ import java.sql.PreparedStatement;
 public class EditAccountInfoModel {
     public int editAccount(int userId, String userName, String profile) {
         try (
-                Connection connection = 
-                        DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;database=InternetForum;"
-                        + "encrypt=true;trustServerCertificate=true;"
-                        + "integratedSecurity=false;user=sa;password=1234;");
-                
-                ){
+                Connection connection =
+                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
+                                + "encrypt=true;trustServerCertificate=true;"
+                                + "integratedSecurity=false;user=sa;password=Password.1;");
+        ){
             // account infoを更新する
             String editSql = 
                     "UPDATE [user] SET user_name = ?, profile = ? WHERE user_id = ? ";

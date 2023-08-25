@@ -12,12 +12,11 @@ public class FetchThreadListByUserId {
     // *todo: スレッドが一件もない場合はnullを返す
     public ArrayList<Thread> fetch(int userId) {
         try (
-                Connection connection = 
-                        DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;database=InternetForum;"
-                        + "encrypt=true;trustServerCertificate=true;"
-                        + "integratedSecurity=false;user=sa;password=1234;");
-                
-                ){
+                Connection connection =
+                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
+                                + "encrypt=true;trustServerCertificate=true;"
+                                + "integratedSecurity=false;user=sa;password=Password.1;");
+        ){
             String queryThreadList =
                     "SELECT "
                     + "    [user].user_id, user_name, create_day, title, description, thread.thread_id,"

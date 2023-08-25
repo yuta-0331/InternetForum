@@ -11,12 +11,11 @@ import model.schema.Genre;
 public class FetchGenreList {
     public ArrayList<Genre> fetch() {
         try (
-                Connection connection = 
-                        DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;database=InternetForum;"
-                        + "encrypt=true;trustServerCertificate=true;"
-                        + "integratedSecurity=false;user=sa;password=1234;");
-                
-                ){
+                Connection connection =
+                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
+                                + "encrypt=true;trustServerCertificate=true;"
+                                + "integratedSecurity=false;user=sa;password=Password.1;");
+        ){
             
             String sql = "SELECT * FROM [genre]";
             PreparedStatement statement = connection.prepareStatement(sql);

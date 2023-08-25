@@ -12,11 +12,11 @@ public class UserLogin {
     private boolean deleteFlag;
     public boolean login(String email, String password) {
         try (
-                Connection connection = 
-                        DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;database=InternetForum;"
-                        + "encrypt=true;trustServerCertificate=true;"
-                        + "integratedSecurity=false;user=sa;password=1234;");
-                ){
+                Connection connection =
+                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
+                                + "encrypt=true;trustServerCertificate=true;"
+                                + "integratedSecurity=false;user=sa;password=Password.1;");
+        ){
             
             String loginSql = "SELECT "
                     + "    [user].user_id, user_name, hashed_password, admin_id, delete_flag "

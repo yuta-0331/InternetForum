@@ -14,11 +14,11 @@ public class CreateThreadModel {
     
     public int create(String title, String description, int genreId, int userId) {
         try (
-                Connection connection = 
-                        DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;database=InternetForum;"
-                        + "encrypt=true;trustServerCertificate=true;"
-                        + "integratedSecurity=false;user=sa;password=1234;");
-                ){
+                Connection connection =
+                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
+                                + "encrypt=true;trustServerCertificate=true;"
+                                + "integratedSecurity=false;user=sa;password=Password.1;");
+        ){
             // スレッドの作成
             String createThreadSql = 
                     "INSERT INTO [thread] (title, description, genre_id, user_id, create_day, last_written_date) VALUES(?, ?, ?, ?, GETDATE(), GETDATE())";

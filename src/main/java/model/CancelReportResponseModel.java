@@ -8,10 +8,9 @@ public class CancelReportResponseModel {
     public int report(int responseId) {
         try (
                 Connection connection = 
-                        DriverManager.getConnection("jdbc:sqlserver://localhost\\SQLEXPRESS;database=InternetForum;"
+                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
                         + "encrypt=true;trustServerCertificate=true;"
-                        + "integratedSecurity=false;user=sa;password=1234;");
-                
+                        + "integratedSecurity=false;user=sa;password=Password.1;");
                 ){
             // 返信の通報フラグを変更する
             String reportSql = 
