@@ -12,9 +12,7 @@ public class FetchGenreList {
     public ArrayList<Genre> fetch() {
         try (
                 Connection connection =
-                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
-                                + "encrypt=true;trustServerCertificate=true;"
-                                + "integratedSecurity=false;user=sa;password=Password.1;");
+                        new CreateConnection().getConnection()
         ){
             
             String sql = "SELECT * FROM [genre]";
@@ -24,7 +22,6 @@ public class FetchGenreList {
             while (resultSet.next()) {
                 genreList.add(new Genre(resultSet.getInt("genre_id"), resultSet.getString("genre_name")));
             }
-            connection.close();
             return genreList;
         } catch (Exception e) {
             e.printStackTrace();

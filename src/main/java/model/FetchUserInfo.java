@@ -52,7 +52,6 @@ public class FetchUserInfo {
             } else {
                 return null;
             }
-            connection.close();
             return user;
         } catch (Exception e) {
             e.printStackTrace();

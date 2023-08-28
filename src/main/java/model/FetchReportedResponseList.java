@@ -44,8 +44,6 @@ public class FetchReportedResponseList {
                         }).build();
                 responseList.add(response);
             }
-            
-            connection.close();
             return responseList;
         } catch (Exception e) {
             e.printStackTrace();

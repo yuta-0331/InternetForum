@@ -43,8 +43,6 @@ public class FetchResponse {
                             arg.report = report;
                         }).build();
             }
-            
-            connection.close();
             return response;
         } catch (Exception e) {
             e.printStackTrace();

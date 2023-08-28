@@ -41,8 +41,6 @@ public class FetchReportedUserList {
                         .build();
                 userList.add(user);
             }
-            
-            connection.close();
             return userList;
         } catch (Exception e) {
             e.printStackTrace();

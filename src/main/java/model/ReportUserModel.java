@@ -21,7 +21,6 @@ public class ReportUserModel {
             if (row == 0) {
                 return 0;
             }
-            connection.close();
             return row;
         } catch (Exception e) {
             e.printStackTrace();

@@ -45,7 +45,6 @@ public class UserLogin {
             if (util.checkHash(hashPassword, util.create(password))) {
                 return true;
             }
-            connection.close();
             return false;
         } catch (Exception e) {
             e.printStackTrace();

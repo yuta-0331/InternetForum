@@ -104,7 +104,6 @@ public class FetchThreadWithResponseList {
                        .build();
                 responseList.add(response);
             }
-            connection.close();
             return new ThreadWithResponseList(thread, responseList);
         } catch (Exception e) {
             e.printStackTrace();

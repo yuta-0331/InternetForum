@@ -62,7 +62,6 @@ public class FetchReportedThreadList {
                         .build();
                 threadList.add(thread);
             }
-            connection.close();
             return threadList;
         } catch (Exception e) {
             e.printStackTrace();

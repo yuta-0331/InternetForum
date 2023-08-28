@@ -32,7 +32,6 @@ public class CreateThreadModel {
             if (resultSet.next()) {
                 threadId = resultSet.getInt(1);
             }
-            connection.close();
             return row;
         } catch (Exception e) {
             e.printStackTrace();
