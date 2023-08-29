@@ -9,9 +9,7 @@ public class DeleteResponseModel {
     public int delete(int responseId) {
         try (
                 Connection connection =
-                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
-                                + "encrypt=true;trustServerCertificate=true;"
-                                + "integratedSecurity=false;user=sa;password=Password.1;");
+                        new CreateConnection().getConnection()
         ){
             // 返信の削除フラグを変更し、非表示にする(同時に、通報フラグを切って管理者画面に表示されないようにする。)
             String editSql = 

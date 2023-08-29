@@ -12,9 +12,7 @@ public class FetchUserInfo {
     public User fetch(int userId) {
         try (
                 Connection connection =
-                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
-                                + "encrypt=true;trustServerCertificate=true;"
-                                + "integratedSecurity=false;user=sa;password=Password.1;");
+                        new CreateConnection().getConnection()
         ){
             String queryUser = "SELECT [user].user_id, user_name, profile, registration_date, delete_flag, report, admin_id "
                     + "FROM [user] "

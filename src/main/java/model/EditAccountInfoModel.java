@@ -8,9 +8,7 @@ public class EditAccountInfoModel {
     public int editAccount(int userId, String userName, String profile) {
         try (
                 Connection connection =
-                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
-                                + "encrypt=true;trustServerCertificate=true;"
-                                + "integratedSecurity=false;user=sa;password=Password.1;");
+                        new CreateConnection().getConnection()
         ){
             // account infoを更新する
             String editSql = 

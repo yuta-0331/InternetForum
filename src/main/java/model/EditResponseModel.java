@@ -1,16 +1,13 @@
 package model;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
 public class EditResponseModel {
     public int editResponse(int threadId, int responseId, String desc) {
         try (
                 Connection connection =
-                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
-                                + "encrypt=true;trustServerCertificate=true;"
-                                + "integratedSecurity=false;user=sa;password=Password.1;");
+                        new CreateConnection().getConnection()
         ){
             // 返信を編集する
             String editSql = 

@@ -8,9 +8,7 @@ public class PostResponseModel {
     public int postResponse(int userId, int threadId, String desc) {
         try (
                 Connection connection =
-                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
-                                + "encrypt=true;trustServerCertificate=true;"
-                                + "integratedSecurity=false;user=sa;password=Password.1;");
+                        new CreateConnection().getConnection()
         ){
             // スレッドへの返信し、スレッドの最終書き込み時間を更新する
             String postSql = 

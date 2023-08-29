@@ -12,9 +12,7 @@ public class FetchResponse {
     public Response fetch(int responseId) {
         try (
                 Connection connection =
-                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
-                                + "encrypt=true;trustServerCertificate=true;"
-                                + "integratedSecurity=false;user=sa;password=Password.1;");
+                        new CreateConnection().getConnection()
         ){
             // レスポンスidからresponseの取得
             String sql = "SELECT * FROM response WHERE response_id = ?";

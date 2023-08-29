@@ -15,9 +15,7 @@ public class FetchThreadWithResponseList {
     public ThreadWithResponseList fetch(int threadId) {
         try (
                 Connection connection =
-                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
-                                + "encrypt=true;trustServerCertificate=true;"
-                                + "integratedSecurity=false;user=sa;password=Password.1;");
+                        new CreateConnection().getConnection()
         ){
             // 引数で与えたthreadIdからthread, user, genre情報の取得
             String queryThreadWithGenre = 

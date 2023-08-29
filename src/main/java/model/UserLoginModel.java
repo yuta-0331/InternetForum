@@ -10,9 +10,7 @@ public class UserLoginModel {
     public boolean login(String email, String password) {
         try (
                 Connection connection =
-                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
-                                + "encrypt=true;trustServerCertificate=true;"
-                                + "integratedSecurity=false;user=sa;password=Password.1;");
+                        new CreateConnection().getConnection()
         ){
             
             String loginSql = "SELECT * FROM [user] WHERE mail_address = ?";

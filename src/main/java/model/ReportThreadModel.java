@@ -8,9 +8,7 @@ public class ReportThreadModel {
     public int report(int threadId) {
         try (
                 Connection connection =
-                        DriverManager.getConnection("jdbc:sqlserver://localhost;database=InternetForum;"
-                                + "encrypt=true;trustServerCertificate=true;"
-                                + "integratedSecurity=false;user=sa;password=Password.1;");
+                        new CreateConnection().getConnection()
         ){
             // 返信の通報フラグを変更する
             String reportSql = 
