@@ -28,7 +28,8 @@ CREATE TABLE [thread] (
 	update_day datetime,
 	delete_flag bit NOT NULL DEFAULT 1,
 	genre_id int NOT NULL CONSTRAINT fk_thread_genre FOREIGN KEY (genre_id) REFERENCES [genre] (genre_id),
-	report bit NOT NULL DEFAULT 0
+	report bit NOT NULL DEFAULT 0,
+	last_written_date datetime
 )
 
 CREATE TABLE [response] (
@@ -47,3 +48,6 @@ SELECT * FROM [genre]
 SELECT * FROM [thread]
 
 INSERT INTO [genre] VALUES (N'ジャンル1'),(N'ジャンル2')
+
+ALTER TABLE [user]
+    ADD last_written_date DATETIME;
