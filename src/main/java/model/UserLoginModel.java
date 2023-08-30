@@ -23,10 +23,7 @@ public class UserLoginModel {
             userId = resultSet.getInt("user_id");
             String hashPassword = resultSet.getString("hashed_password");
             HashPasswordUtil util = new HashPasswordUtil();
-            if (util.checkHash(hashPassword, util.create(password))) {
-                return true;
-            }
-            return false;
+            return util.checkHash(hashPassword, util.create(password));
         } catch (Exception e) {
             e.printStackTrace();
             return false;

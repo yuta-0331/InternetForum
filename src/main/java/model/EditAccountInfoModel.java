@@ -17,11 +17,7 @@ public class EditAccountInfoModel {
             statement.setString(1, userName);
             statement.setString(2, profile);
             statement.setInt(3, userId);
-            int row = statement.executeUpdate();
-            if (row == 0) {
-                return 0;
-            }
-            return row;
+            return statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;

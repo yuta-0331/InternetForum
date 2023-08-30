@@ -18,11 +18,7 @@ public class DeleteResponseModel {
             PreparedStatement statement = connection.prepareStatement(editSql);
             statement.setInt(1, responseId);
             statement.setInt(2, responseId);
-            int row = statement.executeUpdate();
-            if (row == 0) {
-                return 0;
-            }
-            return row;
+            return statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;

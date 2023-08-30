@@ -40,10 +40,7 @@ public class UserLogin {
             // 引数のパスワードをハッシュ化したものが、ハッシュパスワードと一致するかチェック
             // 一致したらtrueを返してログイン成功
             HashPasswordUtil util = new HashPasswordUtil();
-            if (util.checkHash(hashPassword, util.create(password))) {
-                return true;
-            }
-            return false;
+            return util.checkHash(hashPassword, util.create(password));
         } catch (Exception e) {
             e.printStackTrace();
             return false;

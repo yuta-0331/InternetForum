@@ -15,11 +15,7 @@ public class EditResponseModel {
             PreparedStatement statement = connection.prepareStatement(editSql);
             statement.setString(1, desc);
             statement.setInt(2, responseId);
-            int row = statement.executeUpdate();
-            if (row == 0) {
-                return 0;
-            }
-            return row;
+            return statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;

@@ -17,11 +17,7 @@ public class DeleteThreadModel {
             PreparedStatement statement = connection.prepareStatement(deleteUserSql);
             statement.setInt(1, threadId);
             statement.setInt(2, threadId);
-            int row = statement.executeUpdate();
-            if (row == 0) {
-                return 0;
-            }
-            return row;
+            return statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;

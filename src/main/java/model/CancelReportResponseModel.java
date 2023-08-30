@@ -15,11 +15,7 @@ public class CancelReportResponseModel {
                     "UPDATE [response] SET report = 0 WHERE response_id = ? ";
             PreparedStatement statement = connection.prepareStatement(reportSql);
             statement.setInt(1, responseId);
-            int row = statement.executeUpdate();
-            if (row == 0) {
-                return 0;
-            }
-            return row;
+            return statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;

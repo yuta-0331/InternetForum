@@ -18,8 +18,7 @@ public class UserSignUp {
             statement.setString(1, userName);
             statement.setString(2, email);
             statement.setString(3, util.create(password));
-            int rows = statement.executeUpdate();
-            return rows;
+            return statement.executeUpdate();
         } catch (Exception e) {
             e.printStackTrace();
             return 0;
