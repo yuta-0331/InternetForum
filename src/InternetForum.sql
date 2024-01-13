@@ -49,5 +49,5 @@ SELECT * FROM [thread]
 
 INSERT INTO [genre] VALUES (N'ジャンル1'),(N'ジャンル2')
 
-ALTER TABLE [user]
+ALTER TABLE thread
     ADD last_written_date DATETIME;
